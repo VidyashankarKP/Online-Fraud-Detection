@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Detection</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        form { display: inline-block; text-align: left; background: #f4f4f4; padding: 20px; border-radius: 5px; }
+        input { margin: 5px; padding: 8px; width: 90%; }
+        button { padding: 10px; background: blue; color: white; border: none; cursor: pointer; }
+        button:hover { background: darkblue; }
+    </style>
+</head>
+<body>
+    <h2>Fraud Detection Form</h2>
+    <form action="/predict" method="post">
+        <label>Step:</label> <input type="number" name="step" required><br>
+        <label>Amount:</label> <input type="number" name="amount" required><br>
+        <label>Old Balance (Origin):</label> <input type="number" name="oldbalanceOrg" required><br>
+        <label>New Balance (Origin):</label> <input type="number" name="newbalanceOrg" required><br>
+        <label>Old Balance (Destination):</label> <input type="number" name="oldbalanceDest" required><br>
+        <label>New Balance (Destination):</label> <input type="number" name="newbalanceDest" required><br>
+        <button type="submit">Predict</button>
+    </form>
+</body>
+</html>
