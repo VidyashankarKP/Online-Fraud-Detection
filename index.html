@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Fraud Detection Logo" class="logo">
+            <h1>Fraud Detection System</h1>
+        </header>
+        <form id="fraudForm" action="/predict" method="post">
+            <label>Step:</label>
+            <input type="number" name="step" step="any" required>
+
+            <label>Amount:</label>
+            <input type="number" name="amount" step="any" required>
+
+            <label>Old Balance (Origin):</label>
+            <input type="number" name="oldbalanceOrg" step="any" required>
+
+            <label>New Balance (Origin):</label>
+            <input type="number" name="newbalanceOrg" step="any" required>
+
+            <label>Old Balance (Destination):</label>
+            <input type="number" name="oldbalanceDest" step="any" required>
+
+            <label>New Balance (Destination):</label>
+            <input type="number" name="newbalanceDest" step="any" required>
+
+            <button type="submit">Predict</button>
+        </form>
+        <p class="error" id="errorMsg"></p>
+    </div>
+    <script>
+        document.getElementById("fraudForm").addEventListener("submit", function(event) {
+            let inputs = document.querySelectorAll("input");
+            let errorMsg = document.getElementById("errorMsg");
+            errorMsg.textContent = "";
+
+            for (let input of inputs) {
+                if (input.value < 0) {
+                    event.preventDefault();
+                    errorMsg.textContent = "Values cannot be negative!";
+                    return;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
